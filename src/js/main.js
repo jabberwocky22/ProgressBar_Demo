@@ -1,6 +1,7 @@
 
 
 "use strict";
+let forcusClass = 'focused';
 let selectedProgressBarID = ''
 let endPointResult = '';
 httpRequest();
@@ -61,10 +62,22 @@ function moveProgress(progressBarId,value,limit) {
 
 function barClickEventListener(ppBarId) {
     document.getElementById(ppBarId).addEventListener("click",function(event){
+        let allElements = document.querySelectorAll(".focused");
+        allElements.forEach(element => {
+            console.log(element);
+            element.classList.remove(forcusClass);
+        });
         selectedProgressBarID = this.id;
+        this.parentElement.classList.add(forcusClass);
     });
     document.getElementById(ppBarId).parentElement.addEventListener("click",function(event){
+        let allElements = document.querySelectorAll(".focused");
+        allElements.forEach(element => {
+            console.log(element);
+            element.classList.remove(forcusClass);
+        });
         selectedProgressBarID = this.firstElementChild.id;
+        this.classList.add(forcusClass);
     });
 }
 
